@@ -1,0 +1,18 @@
+<div class="padre border border-primary">
+  <div class="mx-auto p-2">
+    <h3>Parent</h3>
+  </div>
+  <div class="col-auto p-2 text-center">
+    <p>message: {{ message }}</p>
+  </div>
+  <div class="botones col-auto p-2 text-center ">
+    <button type="button" class="btn btn-primary">Use Service</button>
+    <button type="button" class="btn btn-primary" (click)="enviarMensajeInOut()">Use Input Property</button>
+    <button type="button" class="btn btn-primary">Use Observable</button>
+  </div>
+  <div class="child border border-primary">
+    <app-child (messageEvent)="receiveMessageInOut($event)"
+      [mensaje]="parentMessage"
+    ></app-child>
+  </div>
+</div>
