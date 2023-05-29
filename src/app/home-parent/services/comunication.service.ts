@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComunicationService {
 
+  private messageSubject = new Subject<string>();
+  message$ = this.messageSubject.asObservable();
+
+  private responseSubject = new Subject<string>();
+  response$ = this.responseSubject.asObservable();
+
   constructor() { }
 
-
-  messageToChild(): string{
-    return 'PARENT USING SERVICE';
+  sendMessage(message: string) {
+    this.messageSubject.next(message);
   }
 
-  messageToParent(): string{
-    return 'CHILD USING SERVICE';
+  sendResponse(response: string) {
+    this.responseSubject.next(response);
   }
 
 }

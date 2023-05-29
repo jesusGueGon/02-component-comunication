@@ -8,7 +8,7 @@
   <div class="botones col-auto p-2 text-center ">
     <button type="button" class="btn btn-primary">Use Service</button>
     <button type="button" class="btn btn-primary" (click)="enviarMensajeInOut()">Use Input Property</button>
-    <button type="button" class="btn btn-primary">Use Observable</button>
+    <button type="button" class="btn btn-primary" (click)="sendMessageObservable()">Use Observable</button>
   </div>
   <div class="child border border-primary">
     <app-child (messageEvent)="receiveMessageInOut($event)"
