@@ -27,6 +27,9 @@ export class ChildComponent {
 
   private subscription: Subscription;
 
+  // importamos el servicio y nos suscribimos al obvservable message,
+  // que es el que contiene la información del mensaje del padre
+  // una vez suscrito establece el mensaje a la variable mensaje y se muestra en pantalla
   constructor(private comunicationService: ComunicationService){
     this.subscription = this.comunicationService.message$.subscribe( ( message ) => {
       this.mensaje = message;
@@ -35,10 +38,16 @@ export class ChildComponent {
   }
 
   sendResponseObservable() {
-    const response = 'CHILD USING OBSERVABLE';
+    const response = 'CHILD USING SUBJECT';
     this.comunicationService.sendResponse(response);
   }
 
+  sendResponseService() {
+    const response = 'CHILD USING SERVICE';
+    this.comunicationService.sendResponse(response);
+  }
+
+  // este metodo se desuscribe del observable, para no estar enviando datos innecesarios todo el rato
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

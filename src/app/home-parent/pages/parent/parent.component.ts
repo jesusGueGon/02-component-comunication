@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
 })
 export class ParentComponent {
 
-
   parentMessage: string = '';
 
   message: string = '';
@@ -26,6 +25,7 @@ export class ParentComponent {
 
   private subscription: Subscription;
 
+  // instanciamos el servicio en el constructor
   constructor(private comunicationService: ComunicationService){
     this.subscription = this.comunicationService.response$.subscribe( ( response ) => {
       this.message = response;
@@ -36,10 +36,15 @@ export class ParentComponent {
     this.subscription.unsubscribe();
   }
 
+  // utilizamos este metodo para enviar el mensaje que queramos al componente hijo
   sendMessageObservable() {
-    const message = 'PARENT USING OBSERVABLE';
+    const message = 'PARENT USING SUBJECT';
     this.comunicationService.sendMessage(message);
   }
 
+  sendMessageService() {
+    const message = 'PARENT USING SERVICE';
+    this.comunicationService.sendMessage(message);
+  }
 
 }
